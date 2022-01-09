@@ -1,4 +1,5 @@
 package com.crudexample.crud.program.dao;
+
 import org.springframework.stereotype.Component;
 
 import com.crudexample.crud.program.dto.RegisterDto;
@@ -65,24 +66,24 @@ public class ArrayCrudDao {
 
 		System.out.println("display by name method invoked");
 		try {
-		
-		for (int i = 0; i < dtos.length; i++) {
-			if (dtos[i].getName().equals(name)) {
-				System.out.println("-------------------");
-				System.out.println("This name belongs to : ");
-				System.out.println(dtos[i].getId());
-				System.out.println(dtos[i].getName());
-				System.out.println(dtos[i].getEmail());
-				System.out.println(dtos[i].getContact());
-				System.out.println(dtos[i].getPass());
-				System.out.println("-------------------");
+
+			for (int i = 0; i < dtos.length; i++) {
+				if (dtos[i].getName().equals(name)) {
+					System.out.println("-------------------");
+					System.out.println("This name belongs to : ");
+					System.out.println(dtos[i].getId());
+					System.out.println(dtos[i].getName());
+					System.out.println(dtos[i].getEmail());
+					System.out.println(dtos[i].getContact());
+					System.out.println(dtos[i].getPass());
+					System.out.println("-------------------");
+
+				}
 
 			}
-
+		} catch (ArrayIndexOutOfBoundsException e) {
+			System.out.println("No data avaiable");
 		}
-		}  catch (ArrayIndexOutOfBoundsException e) {
-            System.out.println("No data avaiable");
-        }
 	}
 
 	// display by Contact number
@@ -138,21 +139,29 @@ public class ArrayCrudDao {
 		}
 
 	}
-	//delete by name
+
+	// delete by name
 	public void deleteByName(String name) {
 		System.out.println();
-		System.out.println("delete method invoked");
-		for (int i = 0; i < dtos.length; i++) {
-			if (dtos[i].getName().equals(name)) {
-				dtos[i] = null;
-				System.out.println("item is deleted");
-				
+		try {
+			System.out.println("delete method invoked");
+			for (int i = 0; i < dtos.length; i++) {
+				System.out.println("for loop invoked");
+				if (dtos[i].getName().equals(name)) {
+					System.out.println("if loop invoked");
+					dtos[i] = null;
+
+					System.out.println("item is deleted");
+
+				} else {
+					System.out.println("not found");
+				}
 
 			}
+		} catch (Exception e) {
+			System.out.println("Cannot find");
+			e.printStackTrace();
 
 		}
-
 	}
-
 }
-
